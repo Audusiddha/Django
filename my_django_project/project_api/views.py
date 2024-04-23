@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import viewsets
 
 from project_api import serializers
 
@@ -72,3 +73,22 @@ class HelloApiView(APIView):
 
         return Response({'method': 'DELETE'})
         # Return a response indicating that the method is DELETE
+
+
+class HelloViewSet(viewsets.ViewSet):
+    """Test API ViewSet"""
+
+    def list(self,request):
+        """return a hello message"""
+
+        a_viewset = [
+            'Uses action (list,create, retrieve,update, partial_update)',
+            'Automatically maps to URLs using Routers',
+            'Provides more functionality with less code',
+
+        ]
+
+        return Response({'message': 'Hello!','a_viewset': a_viewset})
+       
+
+    
