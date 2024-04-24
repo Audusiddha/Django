@@ -1,10 +1,10 @@
-from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import viewsets
 
 from project_api import serializers
+from project_api import models
 
 # Define an API view for handling Hello API requests
 class HelloApiView(APIView):
@@ -128,3 +128,9 @@ class HelloViewSet(viewsets.ViewSet):
         # Define a method to handle deleting a specific object via DELETE request
         return Response({'http_method': 'DELETE'})
         # Return a response indicating that the method is DELETE
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    """Handle creating and updating profiles"""
+    serializer_class = serializers.UserProfileSerializer
+    queryset = models.UserProfile.objects.all()
+    
